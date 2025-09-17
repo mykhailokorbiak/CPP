@@ -13,8 +13,8 @@ OpAmpArray::~OpAmpArray() {
 // Перевірка правильності даних
 bool OpAmpArray::validate(const OpAmp &amp) const {
     if (amp.gain <= 0) return false;
-    if (amp.voltage <= 0 || amp.voltage > 50) return false; // обмежимо до 50В
-    if (amp.inputs <= 0 || amp.inputs > 10) return false;   // кількість входів 1..10
+    if (amp.voltage <= 0 || amp.voltage > 50) return false;
+    if (amp.inputs <= 0 || amp.inputs > 10) return false;  
     return true;
 }
 
