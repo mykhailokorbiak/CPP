@@ -6,7 +6,7 @@ class OpAmp {
 private:
     double gain;
     double voltage;
-    int inputs;        
+    int inputs;
 
 public:
     OpAmp() {

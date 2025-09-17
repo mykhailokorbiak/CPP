@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FB8023FE2E7A82E9006FFD01 /* CopyFiles */ = {
+		FB8024352E7B1B71006FFD01 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -19,19 +19,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FB8024002E7A82E9006FFD01 /* cpp_altunin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cpp_altunin; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB8024372E7B1B71006FFD01 /* lab4-5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lab4-5"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FB8024022E7A82E9006FFD01 /* cpp_altunin */ = {
+		FB8024392E7B1B71006FFD01 /* lab4-5 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = cpp_altunin;
+			path = "lab4-5";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FB8023FD2E7A82E9006FFD01 /* Frameworks */ = {
+		FB8024342E7B1B71006FFD01 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,18 +41,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FB8023F72E7A82E9006FFD01 = {
+		FB80242E2E7B1B71006FFD01 = {
 			isa = PBXGroup;
 			children = (
-				FB8024022E7A82E9006FFD01 /* cpp_altunin */,
-				FB8024012E7A82E9006FFD01 /* Products */,
+				FB8024392E7B1B71006FFD01 /* lab4-5 */,
+				FB8024382E7B1B71006FFD01 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		FB8024012E7A82E9006FFD01 /* Products */ = {
+		FB8024382E7B1B71006FFD01 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB8024002E7A82E9006FFD01 /* cpp_altunin */,
+				FB8024372E7B1B71006FFD01 /* lab4-5 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,63 +60,63 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB8023FF2E7A82E9006FFD01 /* cpp_altunin */ = {
+		FB8024362E7B1B71006FFD01 /* lab4-5 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB8024072E7A82E9006FFD01 /* Build configuration list for PBXNativeTarget "cpp_altunin" */;
+			buildConfigurationList = FB80243E2E7B1B71006FFD01 /* Build configuration list for PBXNativeTarget "lab4-5" */;
 			buildPhases = (
-				FB8023FC2E7A82E9006FFD01 /* Sources */,
-				FB8023FD2E7A82E9006FFD01 /* Frameworks */,
-				FB8023FE2E7A82E9006FFD01 /* CopyFiles */,
+				FB8024332E7B1B71006FFD01 /* Sources */,
+				FB8024342E7B1B71006FFD01 /* Frameworks */,
+				FB8024352E7B1B71006FFD01 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				FB8024022E7A82E9006FFD01 /* cpp_altunin */,
+				FB8024392E7B1B71006FFD01 /* lab4-5 */,
 			);
-			name = cpp_altunin;
+			name = "lab4-5";
 			packageProductDependencies = (
 			);
-			productName = cpp_altunin;
-			productReference = FB8024002E7A82E9006FFD01 /* cpp_altunin */;
+			productName = "lab4-5";
+			productReference = FB8024372E7B1B71006FFD01 /* lab4-5 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FB8023F82E7A82E9006FFD01 /* Project object */ = {
+		FB80242F2E7B1B71006FFD01 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					FB8023FF2E7A82E9006FFD01 = {
+					FB8024362E7B1B71006FFD01 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = FB8023FB2E7A82E9006FFD01 /* Build configuration list for PBXProject "cpp_altunin" */;
+			buildConfigurationList = FB8024322E7B1B71006FFD01 /* Build configuration list for PBXProject "lab4-5" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = FB8023F72E7A82E9006FFD01;
+			mainGroup = FB80242E2E7B1B71006FFD01;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = FB8024012E7A82E9006FFD01 /* Products */;
+			productRefGroup = FB8024382E7B1B71006FFD01 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FB8023FF2E7A82E9006FFD01 /* cpp_altunin */,
+				FB8024362E7B1B71006FFD01 /* lab4-5 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FB8023FC2E7A82E9006FFD01 /* Sources */ = {
+		FB8024332E7B1B71006FFD01 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -126,7 +126,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		FB8024052E7A82E9006FFD01 /* Debug */ = {
+		FB80243C2E7B1B71006FFD01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -187,7 +187,7 @@
 			};
 			name = Debug;
 		};
-		FB8024062E7A82E9006FFD01 /* Release */ = {
+		FB80243D2E7B1B71006FFD01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +241,7 @@
 			};
 			name = Release;
 		};
-		FB8024082E7A82E9006FFD01 /* Debug */ = {
+		FB80243F2E7B1B71006FFD01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -249,7 +249,7 @@
 			};
 			name = Debug;
 		};
-		FB8024092E7A82E9006FFD01 /* Release */ = {
+		FB8024402E7B1B71006FFD01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -260,25 +260,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB8023FB2E7A82E9006FFD01 /* Build configuration list for PBXProject "cpp_altunin" */ = {
+		FB8024322E7B1B71006FFD01 /* Build configuration list for PBXProject "lab4-5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FB8024052E7A82E9006FFD01 /* Debug */,
-				FB8024062E7A82E9006FFD01 /* Release */,
+				FB80243C2E7B1B71006FFD01 /* Debug */,
+				FB80243D2E7B1B71006FFD01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB8024072E7A82E9006FFD01 /* Build configuration list for PBXNativeTarget "cpp_altunin" */ = {
+		FB80243E2E7B1B71006FFD01 /* Build configuration list for PBXNativeTarget "lab4-5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FB8024082E7A82E9006FFD01 /* Debug */,
-				FB8024092E7A82E9006FFD01 /* Release */,
+				FB80243F2E7B1B71006FFD01 /* Debug */,
+				FB8024402E7B1B71006FFD01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = FB8023F82E7A82E9006FFD01 /* Project object */;
+	rootObject = FB80242F2E7B1B71006FFD01 /* Project object */;
 }
