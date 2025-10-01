@@ -49,7 +49,6 @@ public:
         }
     }
 
-    // Метод для виводу інформації
     void printInfo() {
         cout << "=== OpAmp Info ===\n";
         cout << "Коефіцієнт підсилення: " << gain << endl;
