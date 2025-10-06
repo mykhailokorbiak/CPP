@@ -1,4 +1,35 @@
-# ===== C++ build artifacts =====
+# ---- macOS system ----
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- Xcode ----
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+DerivedData/
+build/
+*.xcworkspace/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# ---- C++ ----
+*.o
+*.obj
+*.exe
+*.out
+*.log
+
+# ---- User-specific Xcode data ----
+xcuserdata/
+.idea/
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# ---- VSCode ----
+.vscode/# ===== C++ build artifacts =====
 *.o
 *.obj
 *.lo
