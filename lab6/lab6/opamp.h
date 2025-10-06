@@ -4,7 +4,6 @@
 
 const int SIZE = 3;
 
-// структура з даними
 struct OpAmp {
     double gain;
     double voltage;
