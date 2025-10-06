@@ -1,0 +1,76 @@
+# ===== C++ build artifacts =====
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.a
+*.lib
+
+# ===== Compiler-generated files =====
+*.gch
+*.pch
+*.dSYM/
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+
+# ===== Xcode =====
+# User settings
+xcuserdata/
+*.xcuserstate
+
+# Build directories
+build/
+DerivedData/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/xcshareddata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/
+!default.xcworkspace/contents.xcworkspacedata
+
+# ===== macOS system files =====
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon?
+Icon?
+
+# Thumbnails
+._*
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# ===== Temporary / backup =====
+*.swp
+*.swo
+*.tmp
+*.bak
+*~
+
+# ===== Logs =====
+*.log
+
+# ===== CMake / Make =====
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ===== Others =====
+*.clangd/
+compile_commands.json
