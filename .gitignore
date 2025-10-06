@@ -74,3 +74,6 @@ Makefile
 # ===== Others =====
 *.clangd/
 compile_commands.json
+
+*.xcodeproj
+*.xcworkspace
