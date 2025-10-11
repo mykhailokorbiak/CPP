@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
-
 class OpAmp {
 private:
     double gain;
     double voltage;
     int inputs;
-
 public:
     OpAmp() {
         gain = 1.0;
@@ -15,7 +14,6 @@ public:
         inputs = 2;
         cout << "Створено OpAmp за замовчуванням\n";
     }
-
     OpAmp(double g, double v, int in) {
         setGain(g);
         setVoltage(v);
@@ -32,7 +30,6 @@ public:
             cout << "Некоректний коеф. підсилення, встановлено 1.0\n";
         }
     }
-
     void setVoltage(double v) {
         if (v > 0) voltage = v;
         else {
@@ -40,7 +37,6 @@ public:
             cout << "Некоректна напруга, встановлено 5.0\n";
         }
     }
-
     void setInputs(int in) {
         if (in > 0) inputs = in;
         else {
@@ -48,21 +44,29 @@ public:
             cout << "Некоректна кількість входів, встановлено 2\n";
         }
     }
-
-    void printInfo() {
+    void printInfo() const {
         cout << "=== OpAmp Info ===\n";
         cout << "Коефіцієнт підсилення: " << gain << endl;
         cout << "Напруга живлення: " << voltage << " В\n";
         cout << "Кількість входів: " << inputs << endl;
     }
+    void inputData() {
+        cout << "\nВведіть дані для операційного підсилювача:\n";
+        cout << "Коефіцієнт підсилення: ";
+        cin >> gain;
+        cout << "Напруга живлення (В): ";
+        cin >> voltage;
+        cout << "Кількість входів: ";
+        cin >> inputs;
+    }
+    double getGain() const { return gain; }
+    double getVoltage() const { return voltage; }
+    int getInputs() const { return inputs; }
 };
-
 int main() {
     OpAmp op1;
     op1.printInfo();
-
     cout << endl;
-
     OpAmp op2(100, 12, 3);
     op2.printInfo();
     cout << endl;
@@ -70,6 +74,23 @@ int main() {
     op1.setVoltage(15);
     op1.setInputs(4);
     op1.printInfo();
-
+    cout << "\n--- Введення нового підсилювача користувачем ---\n";
+    OpAmp userOp;
+    userOp.inputData();
+    userOp.printInfo();
+    vector<OpAmp> amps = {op1, op2, userOp};
+    double minGain;
+    cout << "\nВведіть мінімальний коефіцієнт підсилення для відбору: ";
+    cin >> minGain;
+    cout << "\n=== Підсилювачі, у яких gain > " << minGain << " ===\n";
+    bool found = false;
+    for (const auto& amp : amps) {
+        if (amp.getGain() > minGain) {
+            amp.printInfo();
+            found = true;
+        }
+    }
+    if (!found)
+        cout << "Немає підсилювачів, що задовольняють критерій.\n";
     return 0;
 }
