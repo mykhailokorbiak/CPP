@@ -1,96 +1,61 @@
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 using namespace std;
 class OpAmp {
-private:
+    string name;
     double gain;
     double voltage;
     int inputs;
+    bool railToRail;
 public:
-    OpAmp() {
-        gain = 1.0;
-        voltage = 5.0;
-        inputs = 2;
-        cout << "Створено OpAmp за замовчуванням\n";
-    }
-    OpAmp(double g, double v, int in) {
-        setGain(g);
-        setVoltage(v);
-        setInputs(in);
-        cout << "Створено OpAmp з параметрами\n";
-    }
-    ~OpAmp() {
-        cout << "Об'єкт OpAmp знищено\n";
-    }
-    void setGain(double g) {
-        if (g > 0) gain = g;
-        else {
-            gain = 1.0;
-            cout << "Некоректний коеф. підсилення, встановлено 1.0\n";
-        }
-    }
-    void setVoltage(double v) {
-        if (v > 0) voltage = v;
-        else {
-            voltage = 5.0;
-            cout << "Некоректна напруга, встановлено 5.0\n";
-        }
-    }
-    void setInputs(int in) {
-        if (in > 0) inputs = in;
-        else {
-            inputs = 2;
-            cout << "Некоректна кількість входів, встановлено 2\n";
-        }
-    }
-    void printInfo() const {
-        cout << "=== OpAmp Info ===\n";
-        cout << "Коефіцієнт підсилення: " << gain << endl;
-        cout << "Напруга живлення: " << voltage << " В\n";
-        cout << "Кількість входів: " << inputs << endl;
+    OpAmp(string n = "OpAmp", double g = 1, double v = 5, int in = 2, bool rr = false)
+        : name(n), gain(g), voltage(v), inputs(in), railToRail(rr) {
+        validate();
     }
     void inputData() {
-        cout << "\nВведіть дані для операційного підсилювача:\n";
-        cout << "Коефіцієнт підсилення: ";
-        cin >> gain;
-        cout << "Напруга живлення (В): ";
-        cin >> voltage;
-        cout << "Кількість входів: ";
-        cin >> inputs;
+        cout << "\nВведіть назву підсилювача: ";
+        getline(cin >> ws, name);
+        cout << "Введіть коеф. підсилення, напругу, кількість входів і railToRail(0/1): ";
+        cin >> gain >> voltage >> inputs >> railToRail;
+        validate();
+    }
+    void printInfo() const {
+        cout << name << " | Gain=" << gain
+             << " | Voltage=" << voltage << "В"
+             << " | Inputs=" << inputs
+             << " | RailToRail=" << (railToRail ? "так" : "ні") << endl;
     }
     double getGain() const { return gain; }
-    double getVoltage() const { return voltage; }
     int getInputs() const { return inputs; }
+    bool isRailToRail() const { return railToRail; }
+private:
+    void validate() {
+        if (gain <= 0)  { cout << "[Увага] Некоректний gain → 1.0\n"; gain = 1; }
+        if (voltage <= 0) { cout << "[Увага] Некоректна напруга → 5.0\n"; voltage = 5; }
+        if (inputs <= 0) { cout << "[Увага] Некоректна кількість входів → 2\n"; inputs = 2; }
+    }
 };
 int main() {
-    OpAmp op1;
-    op1.printInfo();
-    cout << endl;
-    OpAmp op2(100, 12, 3);
-    op2.printInfo();
-    cout << endl;
-    op1.setGain(-50);
-    op1.setVoltage(15);
-    op1.setInputs(4);
-    op1.printInfo();
-    cout << "\n--- Введення нового підсилювача користувачем ---\n";
-    OpAmp userOp;
-    userOp.inputData();
-    userOp.printInfo();
-    vector<OpAmp> amps = {op1, op2, userOp};
-    double minGain;
-    cout << "\nВведіть мінімальний коефіцієнт підсилення для відбору: ";
-    cin >> minGain;
-    cout << "\n=== Підсилювачі, у яких gain > " << minGain << " ===\n";
+    OpAmp a("A1", 10, 9, 2, true);
+    OpAmp b("B1", 100, 12, 3, false);
+    OpAmp c("C1", -5, 0, -1, true);
+    OpAmp user;
+    cout << "\n--- Ввід користувача ---\n";
+    user.inputData();
+    vector<OpAmp> amps = {a, b, c, user};
+    cout << "\n--- Всі підсилювачі ---\n";
+    for (auto& x : amps) x.printInfo();
+    double minGain; int minInputs; bool needRR;
+    cout << "\nВведіть мінімальний gain, мінімальні inputs, railToRail(0/1): ";
+    cin >> minGain >> minInputs >> needRR;
+    cout << "\n=== Результати ===\n";
     bool found = false;
-    for (const auto& amp : amps) {
-        if (amp.getGain() > minGain) {
-            amp.printInfo();
-            found = true;
-        }
-    }
+    for (auto& x : amps)
+        if (x.getGain() >= minGain && x.getInputs() >= minInputs && x.isRailToRail() == needRR)
+            { x.printInfo(); found = true; }
     if (!found)
-        cout << "Немає підсилювачів, що задовольняють критерій.\n";
+        cout << "Немає підсилювачів, що відповідають критерію.\n";
     return 0;
 }
+
