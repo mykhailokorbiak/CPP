@@ -2,19 +2,12 @@
 
 int main() {
     OpAmpArray arr;
-
     arr.inputData();
     arr.outputData();
-    
-    OpAmp extra = {10, 12, 2};
-    arr.addOpAmp(extra);
+    OpAmp newAmp = {20, 15, 2};
+    arr.insertAt(newAmp, 1);
+    arr.swapElements(0, 1);
+    arr.removeAt(0);
     arr.outputData();
-
-    arr.removeLast();
-    arr.outputData();
-
-    arr.clearAll();
-    arr.outputData();
-
     return 0;
 }
