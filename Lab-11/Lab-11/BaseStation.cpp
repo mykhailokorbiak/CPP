@@ -10,13 +10,12 @@ void BaseStation::input() {
 }
 
 void BaseStation::show() const {
-    cout << "[Базова] ";
+    cout << "[Базова станція] ";
     Radiostation::show();
-    cout << " | Антена: " << antennaHeight << " м"
-         << " | Радіус: " << range() << " км";
+    cout << " | Висота антени: " << antennaHeight
+         << " м | Радіус дії: " << range() << " км\n";
 }
 
 double BaseStation::range() const {
-    return (power * 0.5 + antennaHeight * 0.3);
+    return (power * 0.4 + antennaHeight * 0.3);
 }
-

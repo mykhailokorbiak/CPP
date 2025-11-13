@@ -10,13 +10,12 @@ void PortableRadio::input() {
 }
 
 void PortableRadio::show() const {
-    cout << "[Портативна] ";
+    cout << "[Портативна рація] ";
     Radiostation::show();
-    cout << " | Батарея: " << batteryCapacity << " мА·год"
-         << " | Радіус: " << range() << " км";
+    cout << " | Ємність батареї: " << batteryCapacity
+         << " мА·год | Радіус дії: " << range() << " км\n";
 }
 
 double PortableRadio::range() const {
-    return (power * 0.3 + batteryCapacity / 2000.0);
+    return (power * 0.25 + batteryCapacity / 1500.0);
 }
-

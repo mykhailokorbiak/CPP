@@ -4,17 +4,17 @@ Radiostation::Radiostation(string n, double f, double p)
     : name(n), frequency(f), power(p) {}
 
 void Radiostation::input() {
-    cin.ignore();
     cout << "Назва: ";
+    cin.ignore();
     getline(cin, name);
-
     cout << "Частота (МГц): ";
     cin >> frequency;
-
     cout << "Потужність (Вт): ";
     cin >> power;
 }
 
 void Radiostation::show() const {
-    cout << name << " | " << frequency << " МГц | " << power << " Вт";
+    cout << "Назва: " << name
+         << " | Частота: " << frequency << " МГц"
+         << " | Потужність: " << power << " Вт";
 }
