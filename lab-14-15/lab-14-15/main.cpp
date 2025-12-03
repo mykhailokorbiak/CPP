@@ -1,181 +1,128 @@
 #include <iostream>
 #include <string>
-#include <stdexcept>
+#include <limits>
 using namespace std;
 struct Node {
     string name;
-    double gain;
-    double voltage;
+    double gain, voltage;
     int inputs;
     Node* next;
     Node(string n, double g, double v, int i)
         : name(n), gain(g), voltage(v), inputs(i), next(nullptr) {}
 };
 class AmplifierList {
-private:
-    Node* head;
+    Node* head = nullptr;
 public:
-    AmplifierList() : head(nullptr) {}
     ~AmplifierList() { clear(); }
-    bool isEmpty() const { return head == nullptr; }
-    void addFront(string name, double gain, double voltage, int inputs) {
-        Node* newNode = new Node(name, gain, voltage, inputs);
-        newNode->next = head;
-        head = newNode;
-        cout << "Елемент додано на початок списку.\n";
+    bool empty() const { return head == nullptr; }
+    void addFront(string name, double g, double v, int i) {
+        Node* n = new Node(name, g, v, i);
+        n->next = head;
+        head = n;
     }
-    void addBack(string name, double gain, double voltage, int inputs) {
-        Node* newNode = new Node(name, gain, voltage, inputs);
-        if (isEmpty()) {
-            head = newNode;
-        } else {
-            Node* temp = head;
-            while (temp->next)
-                temp = temp->next;
-            temp->next = newNode;
+    void addBack(string name, double g, double v, int i) {
+        Node* n = new Node(name, g, v, i);
+        if (empty()) head = n;
+        else {
+            Node* t = head;
+            while (t->next) t = t->next;
+            t->next = n;
         }
-        cout << "Елемент додано в кінець списку.\n";
     }
-    void addAfter(string searchName, string name, double gain, double voltage, int inputs) {
-        if (isEmpty()) throw runtime_error("Список порожній!");
-        Node* temp = head;
-        while (temp && temp->name != searchName)
-            temp = temp->next;
-        if (!temp) throw runtime_error("Елемент не знайдено!");
-        Node* newNode = new Node(name, gain, voltage, inputs);
-        newNode->next = temp->next;
-        temp->next = newNode;
-        cout << "Елемент додано після " << searchName << ".\n";
+    void addAfter(string target, string name, double g, double v, int i) {
+        Node* t = head;
+        while (t && t->name != target) t = t->next;
+        if (!t) throw runtime_error("Елемент не знайдено.");
+        Node* n = new Node(name, g, v, i);
+        n->next = t->next;
+        t->next = n;
     }
     void deleteFront() {
-        if (isEmpty()) throw runtime_error("Список порожній!");
-        Node* temp = head;
+        if (empty()) throw runtime_error("Список порожній.");
+        Node* t = head;
         head = head->next;
-        delete temp;
-        cout << "Елемент з початку видалено.\n";
+        delete t;
     }
     void deleteBack() {
-        if (isEmpty()) throw runtime_error("Список порожній!");
-        if (!head->next) {
-            delete head;
-            head = nullptr;
-            return;
-        }
-        Node* temp = head;
-        while (temp->next->next)
-            temp = temp->next;
-        delete temp->next;
-        temp->next = nullptr;
-        cout << "Елемент з кінця видалено.\n";
+        if (empty()) throw runtime_error("Список порожній.");
+        if (!head->next) return deleteFront();
+        Node* t = head;
+        while (t->next->next) t = t->next;
+        delete t->next;
+        t->next = nullptr;
     }
-    void deleteByName(string searchName) {
-        if (isEmpty()) throw runtime_error("Список порожній!");
-        if (head->name == searchName) {
-            deleteFront();
-            return;
-        }
-        Node* temp = head;
-        while (temp->next && temp->next->name != searchName)
-            temp = temp->next;
-        if (!temp->next) throw runtime_error("Елемент не знайдено!");
-        Node* toDelete = temp->next;
-        temp->next = toDelete->next;
-        delete toDelete;
-        cout << "Елемент \"" << searchName << "\" видалено.\n";
+    void deleteByName(string target) {
+        if (empty()) throw runtime_error("Список порожній.");
+        if (head->name == target) return deleteFront();
+        Node* t = head;
+        while (t->next && t->next->name != target) t = t->next;
+        if (!t->next) throw runtime_error("Елемент не знайдено.");
+        Node* del = t->next;
+        t->next = del->next;
+        delete del;
     }
     void display() const {
-        if (isEmpty()) {
-            cout << "Список порожній.\n";
-            return;
+        if (empty()) { cout << "Список порожній.\n"; return; }
+        Node* t = head;
+        while (t) {
+            cout << t->name << " | G=" << t->gain
+                 << " | V=" << t->voltage
+                 << " | In=" << t->inputs << "\n";
+            t = t->next;
         }
-        cout << "\n=== Список операційних підсилювачів ===\n";
-        Node* temp = head;
-        while (temp) {
-            cout << "Назва: " << temp->name
-                 << " | Коеф. підсилення: " << temp->gain
-                 << " | Напруга живлення: " << temp->voltage
-                 << " | Кількість входів: " << temp->inputs << endl;
-            temp = temp->next;
-        }
-        cout << "========================================\n";
     }
     void clear() {
-        Node* current = head;
-        while (current) {
-            Node* next = current->next;
-            delete current;
-            current = next;
-        }
-        head = nullptr;
-        cout << "Список очищено.\n";
+        while (!empty()) deleteFront();
     }
 };
+void flush() {
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
 int main() {
     AmplifierList list;
     int choice;
     while (true) {
-        cout << "\n--- МЕНЮ ---\n"
-             << "1. Додати на початок\n"
-             << "2. Додати в кінець\n"
-             << "3. Додати після елемента\n"
-             << "4. Видалити з початку\n"
-             << "5. Видалити з кінця\n"
-             << "6. Видалити за назвою\n"
-             << "7. Вивести список\n"
-             << "8. Очистити список\n"
-             << "0. Вихід\n"
-             << "Ваш вибір: ";
+        cout << "\n1.Додати на початок\n2.Додати в кінець\n3.Додати після\n"
+             << "4.Видалити з початку\n5.Видалити з кінця\n6.Видалити за назвою\n"
+             << "7.Показати список\n8.Очистити\n0.Вихід\nВаш вибір: ";
         cin >> choice;
-
+        flush();
+        if (choice == 0) break;
         try {
-            if (choice == 0) break;
-            string name, searchName;
-            double gain, voltage;
-            int inputs;
+            string name, target;
+            double g, v; int in;
             switch (choice) {
                 case 1:
-                    cout << "Введіть (назва коеф_підсилення напруга входи): ";
-                    cin >> name >> gain >> voltage >> inputs;
-                    list.addFront(name, gain, voltage, inputs);
+                    cout << "Назва: "; getline(cin, name);
+                    cout << "G V In: "; cin >> g >> v >> in; flush();
+                    list.addFront(name, g, v, in);
                     break;
                 case 2:
-                    cout << "Введіть (назва коеф_підсилення напруга входи): ";
-                    cin >> name >> gain >> voltage >> inputs;
-                    list.addBack(name, gain, voltage, inputs);
+                    cout << "Назва: "; getline(cin, name);
+                    cout << "G V In: "; cin >> g >> v >> in; flush();
+                    list.addBack(name, g, v, in);
                     break;
                 case 3:
-                    cout << "Після якого елемента вставити? ";
-                    cin >> searchName;
-                    cout << "Введіть (назва коеф_підсилення напруга входи): ";
-                    cin >> name >> gain >> voltage >> inputs;
-                    list.addAfter(searchName, name, gain, voltage, inputs);
+                    cout << "Після якого: "; getline(cin, target);
+                    cout << "Нова назва: "; getline(cin, name);
+                    cout << "G V In: "; cin >> g >> v >> in; flush();
+                    list.addAfter(target, name, g, v, in);
                     break;
-                case 4:
-                    list.deleteFront();
-                    break;
-                case 5:
-                    list.deleteBack();
-                    break;
+                case 4: list.deleteFront(); break;
+                case 5: list.deleteBack(); break;
                 case 6:
-                    cout << "Введіть назву для видалення: ";
-                    cin >> searchName;
-                    list.deleteByName(searchName);
+                    cout << "Назва для видалення: ";
+                    getline(cin, target);
+                    list.deleteByName(target);
                     break;
-                case 7:
-                    list.display();
-                    break;
-                case 8:
-                    list.clear();
-                    break;
-                default:
-                    cout << "Невірний вибір!\n";
+                case 7: list.display(); break;
+                case 8: list.clear(); cout << "Очищено.\n"; break;
+                default: cout << "Невірний вибір.\n";
             }
         }
-        catch (const exception& e) {
-            cerr << "Помилка: " << e.what() << endl;
+        catch (exception &e) {
+            cout << "Помилка: " << e.what() << "\n";
         }
     }
-
-    cout << "Програму завершено.\n";
     return 0;
 }
